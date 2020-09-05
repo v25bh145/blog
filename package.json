@@ -1,0 +1,13 @@
+{
+    "name": "v-blog",
+    "version": "0.0.1",
+    "description": "a node project for blog by v25bh145",
+    "author": {
+        "name": "v25bh145",
+        "email": "v25bh145@qq.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "url": "https://github.com/v25bh145/blog.git"
+    }
+}

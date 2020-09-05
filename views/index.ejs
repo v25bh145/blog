@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>v-blog</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div id="header">
+    
+    <%- include('./header/progress-bar.ejs', {}); %>
+    <!-- <div id="progress-bar"></div> -->
+
+    <%- include('./header/admin.ejs', {'onLogin': onLogin}); %>
+    <!-- <div id="admin"></div> -->
+
+    <%- include('./header/navbar.ejs', {}); %>
+    <!-- <div id="navbar"></div> -->
+
+    <%- include('./header/caroucel.ejs', {}); %>
+    <!-- <div id="caroucel"></div> -->
+
+    <%- include('./header/search.ejs', {}); %>
+    <!-- <div id="search"></div> -->
+
+    <%- include('./header/down.ejs', {}); %>
+    <!-- <div id="down"></div> -->
+
+  </div>
+  <div id="body">
+    <%- include('./body/archive.ejs', {}); %>
+    <!-- <div id="archive"></div> -->
+
+    <%- include('./body/me.ejs', {}); %>
+    <!-- <div id="me"></div> -->
+  </div>
+
+  <!-- <div id="footer"></div> -->
+
+
+  <!-- jQuery) -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+
+  <!-- 加载 Bootstrap 的所有 JavaScript 插件 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+  <!-- 脚本 -->
+
+
+</body>
+
+</html>

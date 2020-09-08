@@ -9,5 +9,14 @@
     "license": "MIT",
     "repository": {
         "url": "https://github.com/v25bh145/blog.git"
+    },
+    "dependencies": {
+        "async": "^3.2.0",
+        "body-parser": "^1.19.0",
+        "ejs": "^3.1.5",
+        "express": "^4.17.1",
+        "highlight.js": "^10.1.2",
+        "markdown-it": "^11.0.0",
+        "markdown-it-toc-asd": "^1.1.5"
     }
 }

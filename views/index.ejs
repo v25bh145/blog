@@ -14,37 +14,60 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="/css/header.css">
+  <link rel="stylesheet" type="text/css" href="/css/content.css">
+  <link href="/css/purple.css" rel="stylesheet" />
+  <link href="/css/atelier-forest-light.css" rel="stylesheet" />
+  <link href="/css/codeBackground.css" rel="stylesheet" />
 </head>
 
-<body>
-
-  <div id="header">
-    
-    <%- include('./header/progress-bar.ejs', {}); %>
-    <!-- <div id="progress-bar"></div> -->
-
-    <%- include('./header/admin.ejs', {'onLogin': onLogin}); %>
-    <!-- <div id="admin"></div> -->
-
-    <%- include('./header/navbar.ejs', {}); %>
-    <!-- <div id="navbar"></div> -->
-
-    <%- include('./header/caroucel.ejs', {}); %>
-    <!-- <div id="caroucel"></div> -->
-
-    <%- include('./header/search.ejs', {}); %>
-    <!-- <div id="search"></div> -->
-
-    <%- include('./header/down.ejs', {}); %>
-    <!-- <div id="down"></div> -->
-
+<body style="margin: 0px;" id="app">
+  <div id="progress-bar">
+    <div id="progress-bar-completed"></div>
   </div>
-  <div id="body">
-    <%- include('./body/archive.ejs', {}); %>
-    <!-- <div id="archive"></div> -->
+  <div id="header">
+    <image id="header-background" src="/images/header-image-2.jpg" />
 
-    <%- include('./body/me.ejs', {}); %>
-    <!-- <div id="me"></div> -->
+    <a id="admin">后台登录</a>
+
+    <div id="title"><%= title %></div>
+    <div id="subtitle"><%= subtitle %></div>
+
+    <image id="down" src="/icons/down.png"></image>
+
+    <form id="search-form">
+      <input id="search" type="text" name="search" />
+      <image id="search-btn" src="/icons/search.png" />
+    </form>
+  </div>
+  <div id="h-c-hr"></div>
+  <div id="content">
+    <div id="sidebar">
+      <!-- 包含头像 id B站 github链接 -->
+      <div id="me-block">
+        <div id="author-icon-external">
+          <image id="author-icon" src="/images/head.jpg" />
+        </div>
+        <p id="author-name">作者:<span id="author-name-span">v25bh145</span></p>
+        <a class="author-url" id="author-url-github" target="_blank" href="https://github.com/v25bh145">github</a>
+        <a class="author-url" id="author-url-bilibili" target="_blank"
+          href="https://space.bilibili.com/14138591">bilibili</a>
+      </div>
+
+      <!-- 长文通用 如果显示的文章与推送的相同，则高亮 -->
+      <div id="push-list">
+        <% pushList.forEach(function(archive) { %>
+        <% var href = '/archives/get/' + archive.id %>
+        <% var tag = '<a class="push-list-item-a" target="_blank" href=' + href + ' >' + archive.title + '</a>'; %>
+        <%- tag %>
+        <% }); %>
+      </div>
+    </div>
+
+    <!-- <image id="content-background" src="/images/content-image-1.jpg" /> -->
+    <div id="archive">
+      <%- archive %>
+    </div>
   </div>
 
   <!-- <div id="footer"></div> -->
@@ -57,8 +80,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
   <!-- 脚本 -->
-
-
+  <script src="/js/index.js"></script>
 </body>
 
 </html>

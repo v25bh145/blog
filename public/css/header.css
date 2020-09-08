@@ -62,15 +62,14 @@
 
 #admin {
     position: absolute;
-    bottom: 90%;
+    width: 7%;
+    bottom: 85%;
     right: 5%;
-    text-decoration: none;
-    color: rgba(255, 251, 240, 0.8);
-    /* font-size: inherit;
-    color: inherit */
+    opacity: 0.8;
 }
 #admin:hover {
     cursor: pointer;
+    opacity: 0.5;
 }
 
 #title {

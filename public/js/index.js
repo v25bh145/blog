@@ -18,12 +18,26 @@ var authorName = document.getElementById('author-name');
 var authorNameSpan = document.getElementById('author-name-span');
 var authorUrlGithub = document.getElementById('author-url-github');
 var authorUrlBilibili = document.getElementById('author-url-bilibili');
+
 down.onclick = function () {
-    
-    console.log("TODO DOWN");
-    console.log(document.getElementById('header').scrollHeight);
-    document.body.scrollTop = document.getElementById('header').scrollHeight;
-    document.documentElement.scrollTop = document.getElementById('header').scrollHeight;
+    var scrollHeight = 0;
+    if (document.getElementById('header')) {
+        scrollHeight = document.getElementById('header').scrollHeight;
+    }
+    else if (document.getElementById('header-focus')) {
+        scrollHeight = document.getElementById('header-focus').scrollHeight;
+    }
+    else if (document.getElementById('header-blur')) {
+        scrollHeight = document.getElementById('header-blur').scrollHeight;
+    }
+    clearInterval(down.timer);
+    var dir = document.documentElement.scrollTop > scrollHeight ? -1 : 1;
+    down.timer = setInterval(function () {
+        document.documentElement.scrollTop = document.documentElement.scrollTop + dir * Math.ceil(Math.abs(document.documentElement.scrollTop - scrollHeight) / 10);
+        if (Math.abs(document.documentElement.scrollTop - scrollHeight) <= 10) {
+            clearInterval(down.timer);
+        }
+    }, 10);
 };
 function progressCalculate() {
     var result = 0;
@@ -31,9 +45,21 @@ function progressCalculate() {
     window.addEventListener('scroll', function (e) {
         //滚动高度
         //scrollT(full) + clientH = strollH
+        //滚动百分比
+        //(scrollT - headerH) / (scrollH - clientH - headerH)
         var scrollT = document.body.scrollTop || document.documentElement.scrollTop;
         var scrollH = document.body.scrollHeight;
-        result = scrollT * offsetW / (scrollH - clientH);
+        var headerH = 0;
+        if (document.getElementById('header')) {
+            headerH = document.getElementById('header').scrollHeight;
+        }
+        else if (document.getElementById('header-focus')) {
+            headerH = document.getElementById('header-focus').scrollHeight;
+        }
+        else if (document.getElementById('header-blur')) {
+            headerH = document.getElementById('header-blur').scrollHeight;
+        }
+        result = (scrollT - headerH) * offsetW / (scrollH - clientH - headerH);
         result = result <= 0 ? 0 : result;
         document.getElementById('progress-bar-completed').style.width = result + "px";
     });
@@ -61,6 +87,7 @@ function adjustFontSize() {
     }
     header.style.color = "rgba(255, 251, 240, 0.8)";
 }
+//搜索框变大变小的动画操作
 function addSearchAnimation() {
     search.onblur = function () {
         search.id = 'search-blur';
@@ -80,6 +107,8 @@ window.onload = function () {
     body.style.width = '100%';
     body.style.height = '100%';
     body.style.position = "absolute";
+    var archive = document.getElementById('archive');
+    archive.style.textAlign = 'left';
     adjustFontSize();
     progressCalculate();
     addSearchAnimation();

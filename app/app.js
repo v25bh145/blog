@@ -38,8 +38,8 @@ app.get('/index', function (req, res, next) {
         let result = mkdIt.render(data.toString());
         res.render('index', {
             archive: result,
-            title: "TITLE",
-            subtitle: "SUBTITLE",
+            title: "WELCOME TO MY BLOG",
+            subtitle: "————v25bh145",
             archiveId: 1,
             pushList: [
                 {

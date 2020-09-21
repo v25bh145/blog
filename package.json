@@ -17,6 +17,7 @@
         "express": "^4.17.1",
         "highlight.js": "^10.1.2",
         "markdown-it": "^11.0.0",
-        "markdown-it-toc-asd": "^1.1.5"
+        "markdown-it-toc-asd": "^1.1.5",
+        "mysql": "^2.18.1"
     }
 }

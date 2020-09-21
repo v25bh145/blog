@@ -1,0 +1,12 @@
+.res-list-item-a {
+    text-align: center;
+    /* left: 50%;
+    transform: translateX(-50%); */
+    font-size: 30px;
+}
+.search-hr {
+    margin-bottom: 50px;
+    height: 0;
+    width: 100%;
+    border-top: 1px solid rgb(0, 217, 255);
+}

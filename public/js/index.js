@@ -1,3 +1,12 @@
+//加载好再显示
+document.onreadystatechange = function () {
+    if (document.readyState == "complete") {
+        document.body.style.display = "block";
+    } else {
+        document.body.style.display = "none";
+    };
+};
+
 //页面总宽度
 var offsetW = document.body.offsetWidth;
 //浏览器可显示高度 宽度
@@ -125,6 +134,9 @@ var search = document.getElementById('search');
 //TODO:
 //SERVER ROUTE
 searchBtn.onclick = function () {
+    $.get("/search?search=" + search.value, function(data, status) {
+        console.log(data + " " + status);
+    })
     console.log(search.value);
     console.log('test: searchBtn');
 }

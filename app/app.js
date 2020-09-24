@@ -24,8 +24,15 @@ app.use(bodyParser.urlencoded({extended: false}));
 /**
  * 路由
  */
-app.get('/index', archive.index);
-// app.get('/archives/get/:id', archives.archivesGet)
+app.get('/', function(req, res) {
+    res.redirect('/archives/get/1')
+});
+app.get('/index', function(req, res) {
+    res.redirect('/archives/get/1')
+});
+app.get('/home', function(req, res) {
+    res.redirect('/archives/get/1')
+});
 app.get('/search', archive.search);
 app.get('/archives/get/:id', archive.get);
 

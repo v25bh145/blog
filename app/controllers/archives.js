@@ -1,5 +1,4 @@
 var async = require("async");
-const e = require("express");
 
 exports.get = function (req, res, next) {
     async.waterfall([
@@ -79,7 +78,8 @@ exports.get = function (req, res, next) {
     ], function (err, result) {
         if (err) { res.send(err) }
         else {
-            console.log(result);
+            res.render('index', result);
+            // console.log(result);
         }
     });
 

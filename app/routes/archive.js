@@ -1,28 +1,8 @@
 /**
  * 路由
  */
-exports.index = function (req, res, next) {
-    require('../services/getFileRendered').getFileRendered('../public/markdowns/aboutMe.md', function (err, data) {
-        if (err) res.send(err);
-        else {
-            //推送信息
-            require('../services/pushArticle').pushArticle(5, function (err, pushList) {
-                if (err) res.send(err);
-                else {
-                    res.render('index', {
-                        archive: data,
-                        title: "WELCOME TO MY BLOG",
-                        subtitle: "————v25bh145",
-                        archiveId: 1,
-                        pushList: pushList
-                    });
-                }
-            });
-        }
-    });
-};
-
 exports.search = function (req, res, next) {
+    console.log("qwq");
     let search = req.query.search + "";
     if(search == "undefined" || search == "null")
         res.send("please input correct search!");

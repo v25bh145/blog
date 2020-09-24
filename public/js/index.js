@@ -138,7 +138,7 @@ var search = document.getElementById('search');
 searchBtn.onclick = function () {
     $.get("/search?search=" + search.value, function(data, status) {
         console.log(data + " " + status);
-    })
+    });
     console.log(search.value);
     console.log('test: searchBtn');
 }

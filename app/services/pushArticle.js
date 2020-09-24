@@ -8,10 +8,10 @@ exports.pushArticle = function (number, cb) {
     sqlObj.limit(number);
     sqlObj.select(function (obj) {
         if (obj.error) {
-            cb(1, obj.errorInfo);
+            cb(obj.errorInfo);
         } else {
             if (typeof (obj.data) == "undefined" || typeof (obj.data) == "null" || obj.data.length == 0)
-                cb(1, "NO INFORMATION");
+                cb("NO INFORMATION");
             let pushList = [];
             obj.data.forEach(element => {
                 pushList.push({
@@ -19,7 +19,7 @@ exports.pushArticle = function (number, cb) {
                     title: element.name
                 });
             });
-            cb(0, pushList);
+            cb(null, pushList);
         }
     });
 };

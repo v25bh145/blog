@@ -24,14 +24,14 @@ exports.search = function (search, cb) {
      */
     sqlObj.select(function (obj) {
         if (obj.error) {
-            cb(1, obj.errorInfo);
+            cb(obj.errorInfo);
         }
         else {
             let res = [];
             if (obj.data.length > 0) {
                 if (tags.length === 0) {
                     //不查标签，长度为0
-                    cb(0, obj.data);
+                    cb(null, obj.data);
                 } else {
                     console.log("tags: " + tags);
 
@@ -64,10 +64,10 @@ exports.search = function (search, cb) {
                                 res.push(article);
                         }
                     });
-                    cb(0, res);
+                    cb(null, res);
                 }
             } else {
-                cb(1, "NO INFORMATION");
+                cb("NO INFORMATION");
             }
         }
     });

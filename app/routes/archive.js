@@ -3,14 +3,14 @@
  */
 exports.index = function (req, res, next) {
     require('../services/getFileRendered').getFileRendered('../public/markdowns/aboutMe.md', function (err, data) {
-        if (err) res.send(data);
+        if (err) res.send(err);
         else {
             //推送信息
             require('../services/pushArticle').pushArticle(5, function (err, pushList) {
-                if (err) res.send(pushData);
+                if (err) res.send(err);
                 else {
                     res.render('index', {
-                        archive: data.result,
+                        archive: data,
                         title: "WELCOME TO MY BLOG",
                         subtitle: "————v25bh145",
                         archiveId: 1,
@@ -24,10 +24,11 @@ exports.index = function (req, res, next) {
 
 exports.search = function (req, res, next) {
     let search = req.query.search + "";
-    console.log(search);
+    if(search == "undefined" || search == "null")
+        res.send("please input correct search!");
     require('../services/search').search(search, function (err, data) {
         if (err) {
-            res.send("err: " + data);
+            res.send(err);
         } else {
             res.render('search', {
                 title: search,
@@ -43,16 +44,4 @@ exports.search = function (req, res, next) {
  * @param {*} res 
  * @param {*} next 
  */
-exports.get = function (req, res, next) {
-    var archiveId = Number(req.url.slice(5));
-    if (archiveId.toString() === "NaN") {
-        console.log('不合法');
-        res.send(503);
-    } else {
-        archiveId = parseInt(archiveId);
-        /**
-         * TODO: 查询archive 渲染 查询pushList与seriesList(如果有) 输出
-         */
-        next();
-    }
-}
+exports.get = require("../controllers/archives").get;

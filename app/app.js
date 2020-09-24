@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.get('/index', archive.index);
 // app.get('/archives/get/:id', archives.archivesGet)
 app.get('/search', archive.search);
-app.get('/get/:id', archive.get);
+app.get('/archives/get/:id', archive.get);
 
 //监听端口
 app.listen(3000);

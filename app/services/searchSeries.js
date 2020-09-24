@@ -13,13 +13,13 @@ let getSeriesName = function (id, cb) {
     })
 }
 
-exports.searchSeries = function (archive, cb) {
-    getSeriesName(archive.series_id, function (err, data) {
+exports.searchSeries = function (archiveId, cb) {
+    getSeriesName(archiveId, function (err, data) {
         if (err) cb(1, data);
         else {
             let seriesName = data;
             let sqlObj = sqlClass.form('archives');
-            sqlObj.where('series_id', archive.series_id);
+            sqlObj.where('series_id', archiveId);
             sqlObj.select(function (obj) {
                 if (obj.error) cb(1, obj.errorInfo);
                 else {
@@ -27,7 +27,7 @@ exports.searchSeries = function (archive, cb) {
                     obj.data.forEach(element => {
                         seriesList.push({
                             id: element.id,
-                            name: element.name,
+                            title: element.name,
                             order: element.order
                         });
                     });

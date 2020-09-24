@@ -29,21 +29,23 @@ var authorUrlGithub = document.getElementById('author-url-github');
 var authorUrlBilibili = document.getElementById('author-url-bilibili');
 
 down.onclick = function () {
-    var scrollHeight = 0;
+    var headerH = 0;
+    var scrollH = document.body.scrollHeight;
+    var offsetH = document.body.offsetHeight
     if (document.getElementById('header')) {
-        scrollHeight = document.getElementById('header').scrollHeight;
+        headerH = document.getElementById('header').scrollHeight;
     }
     else if (document.getElementById('header-focus')) {
-        scrollHeight = document.getElementById('header-focus').scrollHeight;
+        headerH = document.getElementById('header-focus').scrollHeight;
     }
     else if (document.getElementById('header-blur')) {
-        scrollHeight = document.getElementById('header-blur').scrollHeight;
+        headerH = document.getElementById('header-blur').scrollHeight;
     }
     clearInterval(down.timer);
-    var dir = document.documentElement.scrollTop > scrollHeight ? -1 : 1;
+    var dir = document.documentElement.scrollTop > headerH ? -1 : 1;
     down.timer = setInterval(function () {
-        document.documentElement.scrollTop = document.documentElement.scrollTop + dir * Math.ceil(Math.abs(document.documentElement.scrollTop - scrollHeight) / 10);
-        if (Math.abs(document.documentElement.scrollTop - scrollHeight) <= 10) {
+        document.documentElement.scrollTop = document.documentElement.scrollTop + dir * Math.ceil(Math.abs(document.documentElement.scrollTop - headerH) / 10);
+        if (Math.abs(document.documentElement.scrollTop - headerH) <= 10 || document.documentElement.scrollTop + offsetH + 20 >= scrollH) {
             clearInterval(down.timer);
         }
     }, 10);

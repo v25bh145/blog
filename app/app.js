@@ -30,13 +30,16 @@ app.use(logger('dev'));
  * 路由
  */
 app.get('/', function(req, res) {
-  res.redirect('/archives/get/1')
+  res.redirect('/archives/search?search=')
 });
 app.get('/index', function(req, res) {
-  res.redirect('/archives/get/1')
+  res.redirect('/archives/search?search=')
 });
 app.get('/home', function(req, res) {
-  res.redirect('/archives/get/1')
+  res.redirect('/archives/search?search=')
+});
+app.get('/archives/get/0', function(req, res) {
+  res.redirect('/archives/search?search=')
 });
 app.use("/archives", userRouter);
 app.use("/admin", adminRouter);

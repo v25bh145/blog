@@ -9,11 +9,11 @@ exports.search = function (req, res, next) {
   require("../services/search").search(search, function (err, data) {
     if (err == "NO INFORMATION") {
       res.render("search", {
-        title: search,
-        subtitle: "搜索结果",
+        title: search == "" ? "全部文章" : search,
+        subtitle: search == "" ? "——v25bh145" : "搜索结果",
         res: [
           {
-            id: 1,
+            id: 0,
             name: "NO INFORMATION",
             description: "please check your input",
             tags: null,
@@ -30,8 +30,8 @@ exports.search = function (req, res, next) {
     } else {
       console.log(data);
       res.render("search", {
-        title: search,
-        subtitle: "搜索结果",
+        title: search == "" ? "全部文章" : search,
+        subtitle: search == "" ? "——v25bh145" : "搜索结果",
         res: data,
       });
     }

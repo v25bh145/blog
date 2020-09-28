@@ -130,7 +130,7 @@ exports.get = function (req, res, next) {
     ],
     function (err, result) {
       if (err) {
-        console.log(errorInfo);
+        console.log(err);
         res.sendStatus(500);
       } else {
         res.render("index", result);

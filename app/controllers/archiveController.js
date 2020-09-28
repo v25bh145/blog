@@ -25,7 +25,7 @@ exports.search = function (req, res, next) {
         ],
       });
     } else if (err) {
-      console.log(errorInfo);
+      console.log(err);
       res.sendStatus(500);
     } else {
       console.log(data);

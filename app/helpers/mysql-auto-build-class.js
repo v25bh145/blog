@@ -18,7 +18,7 @@ class sql {
     _data = {};
     _orderBy = "";
     _limit = "";
-    _whereBinary = true;
+    _whereBinary = false;
     //默认多条where时，使用与逻辑(_whereList[0]["notUseArray"] === false)
     _whereList = [
         { notUseArray: false },
@@ -150,7 +150,7 @@ class sql {
         that._connectConfig = {};
         that._orderBy = "";
         that._limit = "";
-        that._whereBinary = true;
+        that._whereBinary = false;
         that._whereList = [
             { notUseArray: false }
         ];
@@ -267,7 +267,7 @@ class sql {
                 that._conn = mysql.createConnection(that._connectConfig);
                 that._conn.query(sql, function (err, rows) {
                     if (err) asyncCallback(err, "failed");
-                    else asyncCallback(null, "success");
+                    else asyncCallback(null, rows);
                 });
             }
         ], function (error, results) {
@@ -280,7 +280,8 @@ class sql {
             else
                 callback({
                     error: false,
-                    errorInfo: ""
+                    errorInfo: "",
+                    data: results
                 });
         });
     };
@@ -336,7 +337,6 @@ class sql {
             sql += "LIMIT " + that._limit + " ";
         }
         sql += ";";
-
         //还原配置
         this.deleteAllSet();
 

@@ -7,8 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <!-- 上述3个meta标签必须放在最前面，任何其他内容都必须跟随其后！ -->
   <title>v-blog</title>
 
   <!-- Bootstrap -->
@@ -22,6 +21,7 @@
 </head>
 
 <body style="margin: 0px;" id="app">
+  
   <div id="progress-bar">
     <div id="progress-bar-completed"></div>
   </div>
@@ -37,7 +37,8 @@
     <image id="down" src="/icons/down.png"></image>
 
     <form id="search-form">
-      <input id="search" type="text" name="search" />
+      <input id="search" type="text" name="search"/>
+      <input type="text" hidden>
       <image id="search-btn" src="/icons/search.png" />
     </form>
   </div>
@@ -79,6 +80,8 @@
 
   <!-- 加载 Bootstrap 的所有 JavaScript 插件 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <!-- 脚本 -->
   <script src="/js/index.js"></script>

@@ -1,40 +1,45 @@
 /**
  * requires
  */
-let express = require('express'),
-    bodyParser = require('body-parser'),
-    archive = require('./routes/archive');
+//TODO: 针对post方法的全局中间件body参数检查
+let express = require("express"),
+  userRouter = require("./routes/userRouter"),
+  adminRouter = require("./routes/adminRouter"),
+  myltipartyMiddleware = require("connect-multiparty")(),
+  logger = require('morgan');
 
 //启动服务
 let app = express();
 
 //指定模板引擎
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 //指定视图文件所在的路径
-app.set('views', __dirname + '/../views/');
+app.set("views", __dirname + "/../views/");
 
 //视图文件选项
-app.set('view options', { layout: false });
+app.set("view options", { layout: false });
 
-app.use(express.static('../public'));
+app.use(express.static("../public"));
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(myltipartyMiddleware);
+
+app.use(logger('dev'));
 
 /**
  * 路由
  */
 app.get('/', function(req, res) {
-    res.redirect('/archives/get/1')
+  res.redirect('/archives/get/1')
 });
 app.get('/index', function(req, res) {
-    res.redirect('/archives/get/1')
+  res.redirect('/archives/get/1')
 });
 app.get('/home', function(req, res) {
-    res.redirect('/archives/get/1')
+  res.redirect('/archives/get/1')
 });
-app.get('/search', archive.search);
-app.get('/archives/get/:id', archive.get);
+app.use("/archives", userRouter);
+app.use("/admin", adminRouter);
 
 //监听端口
-app.listen(3000);
+app.listen(8000);

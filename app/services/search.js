@@ -14,7 +14,7 @@ exports.search = function (search, cb) {
         if (str[0] === ":") {
             tags.push(str.slice(1));
         } else {
-            sqlObj.where("name", str);
+            sqlObj.where("name", "%" + str + "%", "LIKE");
         }
     });
     //两种逻辑：

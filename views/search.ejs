@@ -61,7 +61,8 @@
                 <%= archive.description %>
             </div>
             <div class="res-list-item-tags">
-                <%= archive.tags %>
+                <% var tags = archive.tags; %>
+                <%= "tags: " + tags %>
                 <% if(typeof(res.tags) != "undefined") { %>
                 <% archive.tags.forEach(function (tag) { %>
                 <div class="res-list-tags-name">

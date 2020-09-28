@@ -28,7 +28,7 @@ exports.search = function (req, res, next) {
       console.log(err);
       res.sendStatus(500);
     } else {
-      console.log(data);
+      // console.log(data);
       res.render("search", {
         title: search == "" ? "全部文章" : search,
         subtitle: search == "" ? "——v25bh145" : "搜索结果",

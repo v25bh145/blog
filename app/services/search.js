@@ -33,18 +33,18 @@ exports.search = function (search, cb) {
                     //不查标签，长度为0
                     cb(null, obj.data);
                 } else {
-                    console.log("tags: " + tags);
+                    // console.log("tags: " + tags);
 
                     //遍历每一个文章
                     obj.data.forEach(function (article) {
-                        console.log("archives: " + JSON.stringify(article));
+                        // console.log("archives: " + JSON.stringify(article));
                         if (typeof (article.tags) != "undefined" && typeof (article.tags) != "null") {
                             //将json转为数组
                             let thisTags = [];
                             let flag = false;
                             let articleTags = JSON.parse(article.tags);
                             for (tagArchiveKey in articleTags) {
-                                console.log("找到标签: " + articleTags[tagArchiveKey]);
+                                // console.log("找到标签: " + articleTags[tagArchiveKey]);
                                 thisTags.push(articleTags[tagArchiveKey]);
                             }
                             //遍历要查询的标签
